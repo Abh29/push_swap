@@ -25,7 +25,8 @@ BSRC := ft_lstnew.c 	ft_lstadd_front.c 	ft_lstsize.c 	\
 		ft_putstr_fd_size_bonus.c 		ft_putlnbr_fd_size_bonus.c \
 		ft_putlnbr_fd_bonus.c 			ft_putdbl_fd_size_bonus.c \
 		ft_putdbl_fd_bonus.c 			ft_putchar_fd_size_bonus.c\
-		ft_putnbr_base_fd_bonus.c		ft_putnbr_unsigned_fd_bonus.c 
+		ft_putnbr_base_fd_bonus.c		ft_putnbr_unsigned_fd_bonus.c \
+		ft_atol.c
 
 
 OBJ := ${SRC:%.c=%.o}
@@ -73,6 +74,14 @@ fclean: clean
 	@echo "cleaning every thing ..."
 	@rm -f $(NAME)
 	@rm -f $(NAMESO)
+
+debug: $(SRC) $(BSRC) fclean
+	@echo "compiling with -g ..."
+	@$(CC) $(FLGS) -c -g $(SRC)
+	@$(CC) $(FLGS) -c -g $(BSRC)
+	@echo "linking ..."
+	@ar rc $(NAME) *.o
+	@ranlib $(NAME)
 
 re: fclean all
 

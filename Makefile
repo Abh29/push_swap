@@ -1,6 +1,7 @@
 #first parts 
 SRC :=	main.c src/ft_stack.c gnl/get_next_line.c gnl/get_next_line_utils.c \
-		src/ft_stack2.c src/ft_moves.c src/ft_moves2.c src/ft_moves3.c
+		src/ft_stack2.c src/ft_moves.c src/ft_moves2.c src/ft_moves3.c src/ft_stack3.c \
+		src/ft_init.c  src/ft_print.c src/ft_hash.c src/ft_queue.c src/ft_bfs.c src/ft_string.c
 
 #bonnus 
 BSRC :=	$(SRC)
@@ -50,7 +51,12 @@ re: fclean all
 
 test:
 	@make -C libft/
-	@$(CC) $(FBSIZE) $(BSRC) libft/libft.a  -o tst && ./tst
+	@$(CC) $(FBSIZE) $(BSRC) libft/libft.a  -o tst
+
+debug: $(SRC) $(HEADER) $(LIBFT)
+	@make debug -C libft/
+	@echo "compiling with -g ..."
+	@$(CC) -g $(FBSIZE) $(SRC) $(LIBFT) -o tst
 
 .PHONY: all clean fclean bonus so re test
 

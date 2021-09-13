@@ -1,0 +1,5 @@
+for n < A use BFS
+stack done
+hashcode for arrays
+free hnode tmp
+change params to struct in ft_bfs.c
