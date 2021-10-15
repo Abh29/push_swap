@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:46:55 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:47:23 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 t_string	*ft_newString(int max_l)
 {
-	t_string *out;
+	t_string	*out;
 
 	if (max_l < 1)
 		return (NULL);
@@ -21,7 +33,7 @@ t_string	*ft_newString(int max_l)
 	return (out);
 }
 
-int		ft_catchar(t_string *s, char c)
+int	ft_catchar(t_string *s, char c)
 {
 	char	*tmp;
 
@@ -37,11 +49,11 @@ int		ft_catchar(t_string *s, char c)
 		s->max_l *= 2;
 	}
 	s->str[s->length++] = c;
-	s->str[s->length] = 0; 
+	s->str[s->length] = 0;
 	return (1);
 }
 
-int		ft_catstr(t_string *s, char *str)
+int	ft_catstr(t_string *s, char *str)
 {
 	while (*str)
 	{

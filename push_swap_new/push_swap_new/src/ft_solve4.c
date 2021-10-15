@@ -1,10 +1,21 @@
-#include "../push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_solve4.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:38:02 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 17:14:20 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../push_swap.h"
 
 void	ft_shift_arr(int arr[], int n)
 {
-	int first;
-	int i;
+	int	first;
+	int	i;
 
 	first = arr[0];
 	i = 0;
@@ -16,12 +27,12 @@ void	ft_shift_arr(int arr[], int n)
 	arr[i] = first;
 }
 
-void	ft_find_lis(int arr[],int lis[], int n)
+void	ft_find_lis(int arr[], int lis[], int n)
 {
-	int i;
-	int j;
-	int k;
-	int last_min;
+	int	i;
+	int	j;
+	int	k;
+	int	last_min;
 	int	tmp;
 
 	i = 0;
@@ -41,4 +52,6 @@ void	ft_find_lis(int arr[],int lis[], int n)
 		}
 		i++;
 	}
+	while (k < n)
+		lis[k++] = -1;
 }

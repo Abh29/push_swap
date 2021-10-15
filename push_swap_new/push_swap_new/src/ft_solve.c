@@ -1,9 +1,19 @@
-#include "../push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_solve.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:35:09 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:36:07 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../push_swap.h"
 
 void	ft_fill_info(t_solve *info, t_stack *a, t_stack *b);
 void	ft_stepi(t_solve *info, t_move *mv, int i, t_string *str);
-
 
 void	ft_solveS(t_solve *info, t_moves *mvs, t_string *str)
 {
@@ -34,7 +44,6 @@ void	ft_solveM(t_solve *info, t_moves *mvs, t_string *str)
 {
 	ft_stepi(info, mvs->pb, 2, str);
 	ft_solveS(info, mvs, str);
-
 }
 
 void	ft_fill_info(t_solve *info, t_stack *a, t_stack *b)
@@ -73,10 +82,10 @@ void	ft_stepi(t_solve *info, t_move *mv, int i, t_string *str)
 	}
 }
 
-int		ft_getpos(t_stack *a, int elm)
+int	ft_getpos(t_stack *a, int elm)
 {
-	int i;
-	int e;
+	int	i;
+	int	e;
 
 	if (ft_isempty(a) || a->size < 2)
 		return (0);
@@ -85,18 +94,18 @@ int		ft_getpos(t_stack *a, int elm)
 	{
 		e = ft_getindex(*a, i);
 		if (elm < e)
-			break;
+			break ;
 		i++;
 	}
-	return (a->size - i); 
+	return (a->size - i);
 }
 
 void	ft_turnB(t_solve *info, int elm, t_string *str, t_moves *mvs)
 {
-	int i;
-	
+	int	i;
+
 	i = ft_getpos(info->b, elm);
-	printf("this is the position %d\n",i);
+	printf("this is the position %d\n", i);
 	if (i > 0)
 		ft_stepi(info, mvs->rb, i, str);
 	if (i < 0)
@@ -122,6 +131,6 @@ void	ft_solveL(t_stack *a, t_stack *b, t_moves *mvs)
 		elm = ft_getindex(*(info.a), info.a->size - 1);
 		ft_turnB(&info, elm, str, mvs);
 		ft_printboth(a, b);
-		printf("%d\n",elm);
+		printf("%d\n", elm);
 	}
 }

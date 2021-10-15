@@ -1,60 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:38:45 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:42:13 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 void	ft_swap(int *arr, int i, int j)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = arr[i];
 	arr[i] = arr[j];
 	arr[j] = tmp;
 }
 
-void	ft_quicksort(int* arr,int first,int last)
+void	ft_quicksort(int *arr, int first, int last)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	pivot;
 
-   if (first<last)
-   {
-	   pivot=first;
-	   i=first;
-	   j=last;
-		while (i<j)
+	if (first < last)
+	{
+		pivot = first;
+		i = first;
+		j = last;
+		while (i < j)
 		{
-			while(arr[i]<=arr[pivot]&&i<last)
+			while (arr[i] <= arr[pivot] && i < last)
 				i++;
-			while(arr[j]>arr[pivot])
+			while (arr[j] > arr[pivot])
 				j--;
-			if(i<j)
+			if (i < j)
 				ft_swap(arr, i, j);
-    	}
-	ft_swap(arr, pivot, j);
-    ft_quicksort(arr,first,j-1);
-    ft_quicksort(arr,j+1,last);
-   }
+		}
+		ft_swap(arr, pivot, j);
+		ft_quicksort(arr, first, j - 1);
+		ft_quicksort(arr, j + 1, last);
+	}
 }
 
-int		ft_binarySearch(int *arr, int left, int right, int key)
+int	ft_binarySearch(int *arr, int left, int right, int key)
 {
-	int mid;
+	int	mid;
 
 	if (arr == NULL)
 		return (-1);
-    if (right >= left) {
-        mid = left + (right - left) / 2;
-        if (arr[mid] == key)
-            return mid;
-        if (arr[mid] > key)
-            return ft_binarySearch(arr, left, mid - 1, key);
-        return ft_binarySearch(arr, mid + 1, right, key);
-    }
-    return -1;
+	if (right >= left)
+	{
+		mid = left + (right - left) / 2;
+		if (arr[mid] == key)
+			return (mid);
+		if (arr[mid] > key)
+			return (ft_binarySearch(arr, left, mid - 1, key));
+		return (ft_binarySearch(arr, mid + 1, right, key));
+	}
+	return (-1);
 }
 
-int		ft_indexOf(int *arr, int size, int key)
+int	ft_indexOf(int *arr, int size, int key)
 {
-	int out;
+	int	out;
 
 	if (arr == NULL)
 		return (-1);

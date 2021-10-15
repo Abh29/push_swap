@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_moves.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:33:42 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:34:09 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 char	ft_sa(t_stack *a, t_stack *b)
 {
-	int c;
-	int idx1;
-	int idx2;
+	int	c;
+	int	idx1;
+	int	idx2;
 
-	if (!a  || a->size < 2)
+	if (!a || a->size < 2)
 		return (0);
 	(void) b;
 	idx1 = (a->tail + MAX_SIZE - 1) % MAX_SIZE;
@@ -25,7 +37,7 @@ char	ft_sb(t_stack *a, t_stack *b)
 	return ('b');
 }
 
-char 	ft_ss(t_stack *a, t_stack *b)
+char	ft_ss(t_stack *a, t_stack *b)
 {
 	if (!a || !b)
 		return (0);

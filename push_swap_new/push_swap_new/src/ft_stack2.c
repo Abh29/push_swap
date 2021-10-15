@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:43:00 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:43:21 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-
-int		ft_find(t_stack *s, int elm)
+int	ft_find(t_stack *s, int elm)
 {
-	int i;
+	int	i;
 
 	if (ft_isempty(s))
 		return (-1);
@@ -15,9 +26,9 @@ int		ft_find(t_stack *s, int elm)
 	return (-1);
 }
 
-int		ft_issorted(t_stack *s, int ord)
+int	ft_issorted(t_stack *s, int ord)
 {
-	int i;
+	int	i;
 
 	if (ord != ACC && ord != DEC)
 		return (0);
@@ -44,9 +55,9 @@ void	ft_pushbottom(t_stack *s, int elm)
 	s->size++;
 }
 
-int		ft_popbottom(t_stack *s)
+int	ft_popbottom(t_stack *s)
 {
-	int out;
+	int	out;
 
 	if (ft_isempty(s))
 		return (-1);

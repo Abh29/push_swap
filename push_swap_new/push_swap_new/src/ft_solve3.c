@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_solve3.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:36:50 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 17:13:29 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 void	ft_stk_arr_head(t_stack stk, int *arr, int head)
@@ -8,51 +20,51 @@ void	ft_stk_arr_head(t_stack stk, int *arr, int head)
 
 	ft_stk_to_arr(stk, tmp);
 	i = 0;
-	j = ft_indexOf(tmp, stk.size, head);
+	j = ft_indexOf(tmp, stk.size, head) + stk.size;
 	while (i < stk.size)
 	{
 		arr[i] = tmp[j % stk.size];
 		i++;
-		j++;
+		j--;
 	}
 }
 
-static int ft_lis(int arr[], int n, int* max)
+static int	ft_lis(int arr[], int n, int *max)
 {
-	int res;
-	int here;
-	int i;
+	int	res;
+	int	here;
+	int	i;
 
 	if (n == 1)
-		return 1;
+		return (1);
 	here = 1;
 	i = 1;
 	while (i < n)
 	{
 		res = ft_lis(arr, i, max);
-        if (arr[i - 1] < arr[n - 1] && res + 1 > here)
-            here = res + 1;
+		if (arr[i - 1] < arr[n - 1] && res + 1 > here)
+			here = res + 1;
 		i++;
 	}
-    if (*max < here)
-        *max = here;
-    return (here);
+	if (*max < here)
+		*max = here;
+	return (here);
 }
- 
-int ft_lis_length(int arr[], int n)
+
+int	ft_lis_length(int arr[], int n)
 {
-    int max;
+	int	max;
 
 	max = 1;
-    ft_lis(arr, n, &max);
-    return (max);
+	ft_lis(arr, n, &max);
+	return (max);
 }
 
-int ft_find_head(t_stack a)
+int	ft_find_head(t_stack a)
 {
-	int i;
+	int	i;
 	int	tmp[MAX_SIZE];
-	int head;
+	int	head;
 	int	max_l;
 
 	i = 0;

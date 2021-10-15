@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:34:44 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:35:01 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 #include <stdio.h>
 
-
 void	ft_printstack(t_stack *a)
 {
-	int i;
+	int	i;
 
 	if (ft_isempty(a))
 	{
@@ -31,7 +42,7 @@ void	ft_printboth(t_stack *a, t_stack *b)
 
 void	ft_printarr(int *arr, int size, int fd)
 {
-	int i;
+	int	i;
 
 	if (arr == NULL)
 	{

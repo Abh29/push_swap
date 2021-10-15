@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:32:28 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:48:19 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-
-void ft_init(t_moves *mvs)
+void	ft_init(t_moves *mvs)
 {
 	mvs->sa = &ft_sa;
 	mvs->sb = &ft_sb;
@@ -22,7 +33,7 @@ void	ft_exit(char *msg, int err)
 	exit(err);
 }
 
-int		ft_is_simp_number(char *str)
+int	ft_is_simp_number(char *str)
 {
 	if (str == NULL)
 		return (0);
@@ -34,8 +45,8 @@ int		ft_is_simp_number(char *str)
 
 void	ft_read_args(int argc, char **argv, t_stack *a)
 {
-	int 	i;
-	long 	num;
+	int		i;
+	long	num;
 	int		tmp[MAX_SIZE];
 
 	i = 1;
@@ -48,11 +59,11 @@ void	ft_read_args(int argc, char **argv, t_stack *a)
 			ft_exit("Error : argument is bigger than MAX_INT !\n", 1);
 		if (num < 0)
 			ft_exit("Error : argument is negative !\n", 1);
-		ft_push(a, (int)num);	
+		ft_push(a, (int)num);
 	}
 	ft_sorted_arr(*a, tmp);
 	i = 0;
-	while (i < argc -1)
+	while (i < argc - 1)
 	{
 		if (tmp[i] == tmp[i + 1])
 			ft_exit("Error : arguments are duplicated !\n", 1);

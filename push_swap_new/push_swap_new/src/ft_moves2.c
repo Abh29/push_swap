@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_moves2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:34:16 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:34:26 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 char	ft_ra(t_stack *a, t_stack *b)
 {
-	int elm;
+	int	elm;
 
 	if (!a || !b || a->size < 2)
 		return (0);
@@ -20,7 +32,7 @@ char	ft_rb(t_stack *a, t_stack *b)
 	return ('e');
 }
 
-char 	ft_rr(t_stack *a, t_stack *b)
+char	ft_rr(t_stack *a, t_stack *b)
 {
 	if (!a || !b)
 		return (0);

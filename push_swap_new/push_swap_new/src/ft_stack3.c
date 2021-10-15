@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack3.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:43:32 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 15:43:54 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void ft_stkdup(t_stack stk, t_stack *dup)
+void	ft_stkdup(t_stack stk, t_stack *dup)
 {
-	int 	head;
-	int 	tail;
+	int	head;
+	int	tail;
 
 	*dup = ft_newstack();
 	head = stk.head;
@@ -16,7 +28,7 @@ void ft_stkdup(t_stack stk, t_stack *dup)
 	}
 }
 
-void ft_sorted_arr(t_stack stk, int *arr)
+void	ft_sorted_arr(t_stack stk, int *arr)
 {
 	if (arr == NULL)
 		return ;
@@ -27,7 +39,7 @@ void ft_sorted_arr(t_stack stk, int *arr)
 void	ft_stk_to_arr(t_stack stk, int *arr)
 {
 	int		i;
-	t_stack tmp;
+	t_stack	tmp;
 
 	if (arr == NULL)
 		return ;
@@ -38,7 +50,7 @@ void	ft_stk_to_arr(t_stack stk, int *arr)
 		arr[i++] = ft_pop(&tmp);
 }
 
-int		ft_equstack(t_stack a, t_stack b)
+int	ft_equstack(t_stack a, t_stack b)
 {
 	int	i;
 
@@ -54,7 +66,7 @@ int		ft_equstack(t_stack a, t_stack b)
 	return (1);
 }
 
-int		ft_getindex(t_stack a, int index)
+int	ft_getindex(t_stack a, int index)
 {
 	return (a.arr[(a.head + index) % MAX_SIZE]);
 }

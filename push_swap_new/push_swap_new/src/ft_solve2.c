@@ -1,119 +1,96 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_solve2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/15 15:36:43 by mehill            #+#    #+#             */
+/*   Updated: 2021/10/15 18:53:07 by mehill           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int		ft_subarr_size(int *keys, int size, int head)
+#include "../push_swap.h"
+
+int	ft_step_top(t_stack *a, int elm)
 {
-	int i;
-	int j;
-	int	out;
+	int	i;
 
 	i = 0;
-	j = ft_indexOf(keys, size, head);
-	out = 1;
-	while (i < size)
+	while (i < a->size)
 	{
-		if (keys[j % size] > head)
-		{
-			head = keys[j % size];
-			out++;
-		}
+		if (ft_getindex(*a, i) == elm)
+			break ;
 		i++;
-		j++;
+	}
+	if (i > a->size / 2)
+		i -= a->size;
+	return (i);
+}
+
+int	ft_step_proper(t_stack *a, int elm)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->size)
+	{
+		if (ft_getindex(*a, i) > elm)
+			break ;
+		i++;
+	}
+	if (i > a->size / 2)
+		i -= a->size;
+	return (i);
+}
+
+int	ft_get_moves(t_param *param, int elm)
+{
+	int	a;
+	int	b;
+	int	out;
+
+	b = ft_step_top(param->b, elm);
+	a = ft_step_proper(param->a, elm);
+	out = a + b;
+	if (a * b > 0)
+	{
+		if (a < 0)
+		{
+			if (a < b)
+				out -= a;
+			else
+				out -= b;
+		}
+		else
+		{
+			if (a < b)
+				out -= a;
+			else
+				out -= b;
+		}
 	}
 	return (out);
 }
 
-int		ft_get_head_markup(t_stack *a)
+int	ft_get_best(t_param *param)
 {
-	int		head;
-	int		max;
-	int		keys[MAX_SIZE];
-	int		i;
-
-	ft_stk_to_arr(*a, keys);
-	i = 0;
-	head = keys[0];
-	max = ft_subarr_size(keys, a->size, keys[0]);
-	while (i < a->size)
-	{
-		if (ft_subarr_size(keys, a->size, keys[i]) > max)
-		{
-			head = keys[i];
-			max = ft_subarr_size(keys, a->size, head);
-		}
-		i++;
-	}
-	return (head);
-}
-
-int	ft_check_swap(t_stack *a, t_moves *mvs, int *last_head)
-{
-	 int	osize;
-	 int	keys[MAX_SIZE];
-	 int	new_head;
-
-	ft_stk_to_arr(*a, keys);
-	osize = ft_subarr_size(keys, a->size, *last_head);
-	mvs->sa(a, NULL);
-	new_head = ft_get_head_markup(a);
-	if (new_head != *last_head)
-	{
-		ft_swap(keys, 0, 1);
-		if (osize > ft_subarr_size(keys, a->size, new_head))
-		{
-			*last_head = new_head;
-			return (1);
-		}
-	}
-	mvs->sa(a, NULL);
-	return (0);
-}
-
-void	ft_get_marked(int *keys, int *marked, int size, int head)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = ft_indexOf(keys, size, head);
-	ft_bzero(marked, size * sizeof(int));
-	while (i < size)
-	{
-		if (keys[j % size] > head)
-		{
-			head = keys[j % size];
-			marked[j % size] = 1;
-		}
-		i++;
-		j++;
-	}
-}
-
-void	ft_push_to_A(t_param *param)
-{
-	int	head;
 	int	i;
-	int marked[MAX_SIZE];
-	int keys[MAX_SIZE];
+	int	min;
+	int	out;
 
-	head = ft_get_head_markup(param->a);
-	if (ft_check_swap(param->a, param->mvs, &head))
-		ft_catchar(param->str, param->mvs->sa(param->a, param->b));
 	i = 0;
-	ft_stk_to_arr(*(param->a), keys);
-	ft_get_marked(keys, marked, param->a->size, head);
-	printf("this is head %d\n", head);
-	while (i < param->a->size)
+	min = INT_MAX;
+	while (i < param->b->size)
 	{
-		if (marked[i])
+		if (ft_get_moves(param, ft_getindex(*(param->b), i)) < min)
 		{
-			ft_catchar(param->str, param->mvs->pb(param->a, param->b));
+			min = ft_get_moves(param, ft_getindex(*(param->b), i));
+			out = i;
 		}
-		ft_catchar(param->str, param->mvs->ra(param->a, param->b));
 		i++;
 	}
-}
-
-void	ft_solve_big(t_param *param)
-{
-	ft_push_to_A(param);
+	return (out);
 }
