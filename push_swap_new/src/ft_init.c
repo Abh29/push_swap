@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:32:28 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/15 15:48:19 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/17 00:47:22 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	ft_is_simp_number(char *str)
 {
 	if (str == NULL)
 		return (0);
+	(if *str == '-')
+		str++;
 	while (*str)
 		if (ft_isdigit(*str++) == 0)
 			return (0);
@@ -57,8 +59,6 @@ void	ft_read_args(int argc, char **argv, t_stack *a)
 		num = ft_atol(argv[i++]);
 		if (num > INT_MAX)
 			ft_exit("Error : argument is bigger than MAX_INT !\n", 1);
-		if (num < 0)
-			ft_exit("Error : argument is negative !\n", 1);
 		ft_push(a, (int)num);
 	}
 	ft_sorted_arr(*a, tmp);
