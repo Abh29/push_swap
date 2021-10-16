@@ -68,5 +68,10 @@ int	ft_equstack(t_stack a, t_stack b)
 
 int	ft_getindex(t_stack a, int index)
 {
-	return (a.arr[(a.head + index) % MAX_SIZE]);
+	int	arr[MAX_SIZE];
+	
+	if (index < 0 || index >= a.size)
+		return (-1);
+	ft_stk_to_arr(a, arr);
+	return (arr[index]);
 }

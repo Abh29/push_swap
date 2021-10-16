@@ -142,5 +142,10 @@ void		ft_find_lis(int arr[], int lis[], int n);
 void		ft_push_to_a(t_param *param);
 int			ft_get_moves(t_param *param, int elm);
 int			ft_get_best(t_param *param);
+int			ft_step_top(t_stack *a, int elm);
+int			ft_step_proper(t_stack *a, int elm);
+int			ft_step_proper(t_stack *a, int elm);
+int			ft_step_top(t_stack *a, int elm);
+int			ft_min_stk(t_stack a);
 
 #endif

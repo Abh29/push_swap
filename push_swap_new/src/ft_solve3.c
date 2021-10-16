@@ -14,19 +14,18 @@
 
 void	ft_stk_arr_head(t_stack stk, int *arr, int head)
 {
-	int	tmp[MAX_SIZE];
+	t_stack dup;
 	int	i;
 	int	j;
 
-	ft_stk_to_arr(stk, tmp);
+	ft_stkdup(stk, &dup);
 	i = 0;
-	j = ft_indexOf(tmp, stk.size, head) + stk.size;
-	while (i < stk.size)
+	while (ft_getindex(dup, 0) != head && i++ < stk.size + 1)
 	{
-		arr[i] = tmp[j % stk.size];
-		i++;
-		j--;
+		j = ft_popbottom(&dup);
+		ft_push(&dup, j);
 	}
+	ft_stk_to_arr(dup, arr);
 }
 
 static int	ft_lis(int arr[], int n, int *max)

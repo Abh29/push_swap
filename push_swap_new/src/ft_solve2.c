@@ -12,8 +12,6 @@
 
 #include "../push_swap.h"
 
-#include "../push_swap.h"
-
 int	ft_step_top(t_stack *a, int elm)
 {
 	int	i;
@@ -30,17 +28,41 @@ int	ft_step_top(t_stack *a, int elm)
 	return (i);
 }
 
+int	ft_min_stk(t_stack a)
+{
+	int out;
+	int	i;
+
+	out = ft_getindex(a, 0);
+	i = 1;
+	while (i < a.size)
+	{
+		if (out > ft_getindex(a, i))
+			out = ft_getindex(a, i);
+		i++;
+	}
+	return (out);
+}
+
 int	ft_step_proper(t_stack *a, int elm)
 {
 	int	i;
+	int min;
 
 	i = 0;
-	while (i < a->size)
-	{
-		if (ft_getindex(*a, i) > elm)
-			break ;
-		i++;
-	}
+	min = ft_min_stk(*a);
+	//printf("this is the element %d   %d\n", elm, min);
+	if (elm < min)
+		while (ft_getindex(*a, i) != min)
+			i++;
+	else
+		while (i < a->size)
+		{
+			printf("one %d %d %d\n",ft_getindex(*a, i), elm, ft_getindex(*a, (i + 1) % a->size));
+			if (ft_getindex(*a, i) <= elm && ft_getindex(*a, (i + 1) % a->size) > elm && ++i)
+				break ;
+			i++;
+		}
 	if (i > a->size / 2)
 		i -= a->size;
 	return (i);
