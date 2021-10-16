@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:36:50 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/16 21:02:35 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/15 17:13:29 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	ft_stk_arr_head(t_stack stk, int *arr, int head)
 {
-	t_stack	dup;
-	int		i;
-	int		j;
+	int	tmp[MAX_SIZE];
+	int	i;
+	int	j;
 
-	ft_stkdup(stk, &dup);
+	ft_stk_to_arr(stk, tmp);
 	i = 0;
-	while (ft_getindex(dup, 0) != head && i++ < stk.size + 1)
+	j = ft_indexOf(tmp, stk.size, head) + stk.size;
+	while (i < stk.size)
 	{
-		j = ft_popbottom(&dup);
-		ft_push(&dup, j);
+		arr[i] = tmp[j % stk.size];
+		i++;
+		j--;
 	}
-	ft_stk_to_arr(dup, arr);
 }
 
 static int	ft_lis(int arr[], int n, int *max)
@@ -77,9 +78,6 @@ int	ft_find_head(t_stack a)
 			max_l = ft_lis_length(tmp, a.size);
 			head = i;
 		}
-		else if (ft_lis_length(tmp, a.size) == max_l && \
-		ft_getindex(a, i) < ft_getindex(a, head))
-			head = i;
 		i++;
 	}
 	return (ft_getindex(a, head));

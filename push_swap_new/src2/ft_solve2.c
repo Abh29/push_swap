@@ -6,9 +6,11 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:36:43 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/16 23:46:04 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/15 18:53:07 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../push_swap.h"
 
 #include "../push_swap.h"
 
@@ -31,24 +33,13 @@ int	ft_step_top(t_stack *a, int elm)
 int	ft_step_proper(t_stack *a, int elm)
 {
 	int	i;
-	int	min;
-	int	max;
 
 	i = 0;
-	min = ft_min_stk(*a);
-	max = ft_max_stk(*a);
-	if ((elm > max || elm < min))
-		while (ft_getindex(*a, i) != min)
-			i++;
-	else
+	while (i < a->size)
 	{
-		while (i < a->size)
-		{
-			if (ft_getindex(*a, i) < elm && \
-			ft_getindex(*a, (i + 1) % a->size) > elm && ++i)
-				break ;
-			i++;
-		}
+		if (ft_getindex(*a, i) > elm)
+			break ;
+		i++;
 	}
 	if (i > a->size / 2)
 		i -= a->size;
@@ -91,7 +82,6 @@ int	ft_get_best(t_param *param)
 	int	out;
 
 	i = 0;
-	out = 0;
 	min = INT_MAX;
 	while (i < param->b->size)
 	{

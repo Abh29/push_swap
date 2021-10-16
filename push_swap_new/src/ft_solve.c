@@ -6,45 +6,11 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:35:09 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/15 15:36:07 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/17 00:15:11 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	ft_fill_info(t_solve *info, t_stack *a, t_stack *b);
-void	ft_stepi(t_solve *info, t_move *mv, int i, t_string *str);
-
-void	ft_solveS(t_solve *info, t_moves *mvs, t_string *str)
-{
-	int			desc;
-
-	desc = info->idxA[0] * 100 + info->idxA[1] * 10 + info->idxA[2];
-	if (desc == 12)
-		return ;
-	if (desc == 21)
-	{
-		ft_stepi(info, mvs->sa, 1, str);
-		ft_stepi(info, mvs->ra, 1, str);
-	}
-	else if (desc == 102)
-		ft_stepi(info, mvs->sa, 1, str);
-	else if (desc == 120)
-		ft_stepi(info, mvs->rra, 1, str);
-	else if (desc == 201)
-		ft_stepi(info, mvs->ra, 1, str);
-	else if (desc == 210)
-	{
-		ft_stepi(info, mvs->sa, 1, str);
-		ft_stepi(info, mvs->rra, 1, str);
-	}
-}
-
-void	ft_solveM(t_solve *info, t_moves *mvs, t_string *str)
-{
-	ft_stepi(info, mvs->pb, 2, str);
-	ft_solveS(info, mvs, str);
-}
 
 void	ft_fill_info(t_solve *info, t_stack *a, t_stack *b)
 {
@@ -71,66 +37,74 @@ void	ft_fill_info(t_solve *info, t_stack *a, t_stack *b)
 	}	
 }
 
-void	ft_stepi(t_solve *info, t_move *mv, int i, t_string *str)
+void	ft_solve_s(t_param *param)
 {
-	char	c;
-
-	while (i-- > 0)
-	{
-		c = mv(info->a, info->b);
-		ft_catchar(str, c);
-	}
-}
-
-int	ft_getpos(t_stack *a, int elm)
-{
-	int	i;
-	int	e;
-
-	if (ft_isempty(a) || a->size < 2)
-		return (0);
-	i = 0;
-	while (i < a->size)
-	{
-		e = ft_getindex(*a, i);
-		if (elm < e)
-			break ;
-		i++;
-	}
-	return (a->size - i);
-}
-
-void	ft_turnB(t_solve *info, int elm, t_string *str, t_moves *mvs)
-{
-	int	i;
-
-	i = ft_getpos(info->b, elm);
-	printf("this is the position %d\n", i);
-	if (i > 0)
-		ft_stepi(info, mvs->rb, i, str);
-	if (i < 0)
-		ft_stepi(info, mvs->rrb, -i, str);
-	ft_stepi(info, mvs->pb, 1, str);
-	if (info->b->size == 2 && ft_issorted(info->b, DEC))
-	{
-		printf("here!\n");
-		ft_stepi(info, mvs->sb, 1, str);
-	}	
-}
-
-void	ft_solveL(t_stack *a, t_stack *b, t_moves *mvs)
-{
+	int			desc;
 	t_solve		info;
-	t_string	*str;
-	int			elm;
 
-	ft_fill_info(&info, a, b);
-	str = ft_newString(1000);
-	while (ft_isempty(info.a) == 0)
+	ft_fill_info(&info, param->a, param->b);
+	desc = info.idxA[0] * 100 + info.idxA[1] * 10 + info.idxA[2];
+	if (desc == 12)
+		return ;
+	if (desc == 21)
 	{
-		elm = ft_getindex(*(info.a), info.a->size - 1);
-		ft_turnB(&info, elm, str, mvs);
-		ft_printboth(a, b);
-		printf("%d\n", elm);
+		ft_catchar(param->str, param->mvs->sa(param->a, param->b));
+		ft_catchar(param->str, param->mvs->ra(param->a, param->b));
 	}
+	else if (desc == 102)
+		ft_catchar(param->str, param->mvs->sa(param->a, param->b));
+	else if (desc == 120)
+		ft_catchar(param->str, param->mvs->ra(param->a, param->b));
+	else if (desc == 201)
+		ft_catchar(param->str, param->mvs->rra(param->a, param->b));
+	else if (desc == 210)
+	{
+		ft_catchar(param->str, param->mvs->sa(param->a, param->b));
+		ft_catchar(param->str, param->mvs->rra(param->a, param->b));
+	}
+}
+
+void	ft_solve_m(t_param *param)
+{
+	int	max;
+	int	min;
+	int	keys[MAX_SIZE];
+
+	max = ft_max_stk(*(param->a));
+	min = ft_min_stk(*(param->a));
+	ft_stk_arr_head(*(param->a), keys, min);
+	if (ft_lis_length(keys, param->a->size) == param->a->size)
+	{
+		max = ft_step_top(param->a, min);
+		if (max > 0)
+			ft_move_rep(param->mvs->ra, param, max);
+		else if (max < 0)
+			ft_move_rep(param->mvs->rra, param, max * -1);
+		return ;
+	}
+	min = ft_step_top(param->a, max);
+	if (min > 0)
+		ft_move_rep(param->mvs->ra, param, min);
+	else if (min < 0)
+		ft_move_rep(param->mvs->rra, param, min * -1);
+	ft_catchar(param->str, param->mvs->pb(param->a, param->b));
+	ft_solve_s(param);
+	ft_catchar(param->str, param->mvs->pa(param->a, param->b));
+	ft_catchar(param->str, param->mvs->ra(param->a, param->b));
+}
+
+void	ft_solve_l(t_param *param)
+{
+	ft_push_to_b(param);
+	ft_push_to_a(param);
+}
+
+void	ft_solve(t_param *param)
+{
+	if (param->a->size == 3)
+		ft_solve_s(param);
+	else if (param->a->size == 4)
+		ft_solve_m(param);
+	else
+		ft_solve_l(param);
 }

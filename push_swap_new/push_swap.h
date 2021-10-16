@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:11:37 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/15 19:12:41 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/17 00:18:51 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,11 @@ void		ft_printarr(int *arr, int size, int fd);
 
 void		ft_stepi(t_solve *info, t_move *mv, int i, t_string *str);
 
-void		ft_solveS(t_solve *info, t_moves *mvs, t_string *str);
-void		ft_solveM(t_solve *info, t_moves *mvs, t_string *str);
-void		ft_solveL(t_stack *a, t_stack *b, t_moves *mvs);
+void		ft_solve_s(t_param *param);
+void		ft_solve_m(t_param *param);
+void		ft_solve_l(t_param *param);
 
-void		ft_solve_big(t_param *param);
+void		ft_solve(t_param *param);
 
 //testing a new solution 
 int			ft_find_head(t_stack a);
@@ -140,6 +140,7 @@ int			ft_lis_length(int arr[], int n);
 void		ft_stk_arr_head(t_stack stk, int *arr, int head);
 void		ft_find_lis(int arr[], int lis[], int n);
 void		ft_push_to_a(t_param *param);
+void		ft_push_to_b(t_param *param);
 int			ft_get_moves(t_param *param, int elm);
 int			ft_get_best(t_param *param);
 int			ft_step_top(t_stack *a, int elm);
@@ -147,5 +148,7 @@ int			ft_step_proper(t_stack *a, int elm);
 int			ft_step_proper(t_stack *a, int elm);
 int			ft_step_top(t_stack *a, int elm);
 int			ft_min_stk(t_stack a);
+int			ft_max_stk(t_stack a);
+void		ft_move_rep(t_move *mv, t_param *param, int rep);
 
 #endif

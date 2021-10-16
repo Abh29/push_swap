@@ -2,7 +2,8 @@
 SRC :=	main.c src/ft_stack.c gnl/get_next_line.c gnl/get_next_line_utils.c \
 		src/ft_stack2.c src/ft_moves.c src/ft_moves2.c src/ft_moves3.c src/ft_stack3.c \
 		src/ft_init.c  src/ft_print.c src/ft_string.c src/ft_solve.c src/ft_sort.c \
-		src/ft_step1.c src/ft_solve3.c src/ft_solve4.c src/ft_step2.c src/ft_solve2.c
+		src/ft_step1.c src/ft_solve3.c src/ft_solve4.c src/ft_step2.c src/ft_solve2.c \
+		src/ft_stack4.c
 #bonnus 
 BSRC :=	$(SRC)
 

@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:43:32 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/16 21:32:30 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/15 15:43:54 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,5 @@ int	ft_equstack(t_stack a, t_stack b)
 
 int	ft_getindex(t_stack a, int index)
 {
-	int	arr[MAX_SIZE];
-
-	if (index < 0 || index >= a.size)
-		return (-1);
-	ft_stk_to_arr(a, arr);
-	return (arr[index]);
+	return (a.arr[(a.head + index) % MAX_SIZE]);
 }

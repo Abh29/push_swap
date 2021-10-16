@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:43:00 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/16 22:08:08 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/15 15:43:21 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,19 @@ int	ft_find(t_stack *s, int elm)
 int	ft_issorted(t_stack *s, int ord)
 {
 	int	i;
-	int	arr[MAX_SIZE];
 
 	if (ord != ACC && ord != DEC)
 		return (0);
 	if (ft_isempty(s))
 		return (1);
-	ft_stk_to_arr(*s, arr);
-	i = 1;
+	i = s->head;
 	if (ord == ACC)
-		while (i < s->size && arr[i - 1] <= arr[i])
-			i++;
+		while (i != s->tail && s->arr[i] <= s->arr[(i + 1) % MAX_SIZE])
+			i = (i + 1) % MAX_SIZE;
 	else
-		while (i < s->size && arr[i - 1] >= arr[i])
-			i++;
-	if (i == s->size)
+		while (i != s->tail && s->arr[i] >= s->arr[(i + 1) % MAX_SIZE])
+			i = (i + 1) % MAX_SIZE;
+	if (i == s->tail)
 		return (1);
 	return (0);
 }

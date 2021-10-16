@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:33:42 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/16 21:36:01 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/15 15:34:09 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	ft_sa(t_stack *a, t_stack *b)
 
 char	ft_sb(t_stack *a, t_stack *b)
 {
-	if (!b)
+	if (!a || !b)
 		return (0);
 	ft_sa(b, a);
 	return ('b');

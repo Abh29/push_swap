@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:44:06 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/17 00:00:28 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/16 21:00:41 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,44 @@ void	ft_push_to_b(t_param *param)
 	int	i;
 	int	lis[MAX_SIZE];
 	int	keys[MAX_SIZE];
-	int	length;
 
 	head = ft_find_head(*(param->a));
-	if (ft_check_swap(param->a, param->mvs, &head))
+	if (ft_check_swap(param->a, param->mvs, &head) && printf("swap\n"))
 		ft_catchar(param->str, param->mvs->sa(param->a, param->b));
 	i = 0;
+	printf("these are the stacks\n");
+	ft_printboth(param->a, param->b);
+	printf("this is the head %d\n", head);
+	ft_printstack(param->a);
 	ft_stk_arr_head(*(param->a), keys, head);
-	length = ft_lis_length(keys, param->a->size);
-	if (length == param->a->size)
-		return ;
+	ft_putstr_fd("arr head : ", 1);
+	ft_printarr(keys, param->a->size, 1);
 	ft_find_lis(keys, lis, param->a->size);
+	ft_putstr_fd("arr lis : ", 1);
+	ft_printarr(lis, param->a->size, 1);
+	getchar();
 	while (i < param->a->size)
 	{
-		if (ft_indexOf(lis, length, \
-		ft_getindex(*(param->a), 0)) == -1 && i--)
+		ft_putstr_fd("**********************\n", 1);
+		ft_printboth(param->a, param->b);
+		printf("this is the top : %d\n", ft_getindex(*(param->a), 0));
+		if (ft_indexOf(lis, param->a->size, ft_getindex(*(param->a), 0)) == -1 && i-- && printf("move this %d\n", ft_getindex(*(param->a), 0)) )
 			ft_catchar(param->str, param->mvs->pb(param->a, param->b));
 		else
 			ft_catchar(param->str, param->mvs->ra(param->a, param->b));
 		i++;
 	}
+	ft_putstr_fd("**********************\n", 1);
+	ft_printboth(param->a, param->b);
+	printf("this is the top : %d\n", ft_getindex(*(param->a), 0));
+}
+
+void	ft_solve_big(t_param *param)
+{
+	ft_push_to_b(param);
+	printf("\n\n\n**********************\n");
+	ft_printboth(param->a, param->b);
+	printf("\n**********************\n\n\n");
+	getchar();
+	ft_push_to_a(param);
 }

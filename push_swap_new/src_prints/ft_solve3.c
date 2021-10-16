@@ -6,7 +6,7 @@
 /*   By: mehill <mehill@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:36:50 by mehill            #+#    #+#             */
-/*   Updated: 2021/10/16 21:02:35 by mehill           ###   ########.fr       */
+/*   Updated: 2021/10/16 19:47:22 by mehill           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	ft_find_head(t_stack a)
 	while (i < a.size)
 	{
 		ft_stk_arr_head(a, tmp, ft_getindex(a, i));
+		//ft_printarr(tmp, a.size, 1);
 		if (ft_lis_length(tmp, a.size) > max_l)
 		{
 			max_l = ft_lis_length(tmp, a.size);
@@ -80,6 +81,7 @@ int	ft_find_head(t_stack a)
 		else if (ft_lis_length(tmp, a.size) == max_l && \
 		ft_getindex(a, i) < ft_getindex(a, head))
 			head = i;
+		//printf("finding head...\nhead : %d ==> lis_length : %d\n", ft_getindex(a, i), ft_lis_length(tmp, a.size));
 		i++;
 	}
 	return (ft_getindex(a, head));
