@@ -94,8 +94,8 @@ void	ft_lstclear(t_list **lst)
 	{
 		tmp = *lst;
 		*lst = (*lst)->next;
-		free(lst);
-		lst = NULL;
+		free(tmp);
+		tmp = NULL;
 	}
 	lst = NULL;
 }

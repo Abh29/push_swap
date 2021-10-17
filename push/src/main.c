@@ -89,3 +89,12 @@ int	main(int ac, char **av)
 	push_swap_close(s);
 	return (0);
 }
+
+//second solution 
+/**
+ * find the biggest consicutive deccending sequence 
+ * prepare b to receive the sequence (optimize)
+ * send it to b
+ * repeat while a is not sorted 
+ * push everything back to a
+ * **/
