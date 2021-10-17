@@ -5,7 +5,11 @@ SRC :=	main.c src/ft_stack.c gnl/get_next_line.c gnl/get_next_line_utils.c \
 		src/ft_solve3.c src/ft_solve4.c src/ft_solve2.c \
 		src/ft_stack4.c src/ft_replace_args.c src/ft_utils.c
 #bonnus 
-BSRC :=	$(SRC)
+BSRC :=	main_bonus.c src/ft_stack.c gnl/get_next_line.c gnl/get_next_line_utils.c \
+		src/ft_stack2.c src/ft_moves.c src/ft_moves2.c src/ft_moves3.c src/ft_stack3.c \
+		src/ft_init_bonus.c  src/ft_print.c src/ft_string.c src/ft_solve.c src/ft_sort.c \
+		src/ft_solve3.c src/ft_solve4.c src/ft_solve2.c \
+		src/ft_stack4.c src/ft_replace_args.c src/ft_utils.c
 
 CC = gcc
 
@@ -16,6 +20,7 @@ HEADER = push_swap.h
 LIBFT = libft/libft.a
 
 NAME = push_swap
+BNAME = checker
 
 
 all :$(NAME)
@@ -27,7 +32,7 @@ $(NAME): $(SRC) $(HEADER) $(LIBFT)
 bonus: $(BSRC) $(HEADER) $(LIBFT)
 	@echo "compiling bonus ..."
 	@rm -f $(NAME)
-	@$(CC) $(FLGS) $(FBSIZE) $(BSRC) $(LIBFT) -o $(NAME)
+	@$(CC) $(FLGS) $(FBSIZE) $(BSRC) $(LIBFT) -o $(BNAME)
 
 $(LIBFT):
 	@make -C libft/
@@ -47,6 +52,7 @@ fclean: clean
 	@echo "cleaning every thing ..."
 	@make fclean -C libft/
 	@rm -f $(NAME)
+	@rm -f $(BNAME)
 
 re: fclean all
 

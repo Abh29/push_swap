@@ -67,11 +67,11 @@ int	main(int argc, char **argv)
 	param.a = &a;
 	param.b = &b;
 	param.mvs = &mvs;
-	param.str = ft_newString(1000);
+	param.str = ft_newString(10000);
 	ft_solve(&param);
 	ft_interprt_sol(param.str);
-	  printf("sorted %d   size %d   solsize : %d\n", ft_issorted(param.a, ACC), a.size, param.str->length);
-	  ft_printstack(&a);
+	//printf("sorted %d   size %d   solsize : %d\n", ft_issorted(param.a, ACC), a.size, param.str->length);
+	//ft_printstack(&a);
 	ft_freeString(&(param.str));
 	return (0);
 }

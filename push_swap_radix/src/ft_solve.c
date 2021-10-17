@@ -114,8 +114,8 @@ void	ft_solve_l(t_param *param)
 
 	i = 0;
 	size = param->a->size;	
-	printf("\n\n\n");
-	ft_printboth(param->a, param->b);
+//	printf("\n\n\n");
+//	ft_printboth(param->a, param->b);
 	while (size >> i)
 	{
 		j = 0;
@@ -131,13 +131,13 @@ void	ft_solve_l(t_param *param)
 				ft_catchar(param->str, param->mvs->pb(param->a, param->b));
 			j++;
 		}
-		printf("\n\n\n");
-		ft_printboth(param->a, param->b);
+	//	printf("\n\n\n");
+	//	ft_printboth(param->a, param->b);
 		while (ft_isempty(param->b) == 0)
 			ft_catchar(param->str, param->mvs->pa(param->a, param->b));
-		printf("\n\n\n");
-		ft_printboth(param->a, param->b);
-		getchar();
+		// printf("\n\n\n");
+		// ft_printboth(param->a, param->b);
+		// getchar();
 		if (ft_issorted(param->a, ACC))
 			break ;
 		i++;
